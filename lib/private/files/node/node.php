@@ -43,13 +43,6 @@ class Node implements \OCP\Files\Node, FileInfo {
 		$this->path = $path;
 	}
 
-	private function getFileInfo() {
-		if (!$this->fileInfo) {
-			$this->fileInfo = $this->view->getFileInfo($this->path);
-		}
-		return $this->fileInfo;
-	}
-
 	/**
 	 * @param string[] $hooks
 	 */
@@ -218,6 +211,17 @@ class Node implements \OCP\Files\Node, FileInfo {
 	 */
 	public function getName() {
 		return basename($this->path);
+	}
+
+	/**
+	 * Returns the matching FileInfo object.
+	 *
+	 * @deprecated for temporary internal use until the files
+	 * app is properly moved to the Node API
+	 * @return \OCP\Files\FileInfo
+	 */
+	public function getFileInfo() {
+		return $this->view->getFileInfo($this->path);
 	}
 
 	/**

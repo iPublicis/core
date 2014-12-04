@@ -98,7 +98,7 @@ class Activity implements \OCP\Activity\IExtension {
 				case self::SUBJECT_REMOTE_SHARE_DECLINED:
 					return $l->t('%1$s declined remote share <strong>%2$s</strong>', $params)->__toString();
 					case self::SUBJECT_REMOTE_SHARE_UNSHARED:
-					return $l->t('%1$s unshared <strong>%2$s</strong>', $params)->__toString();
+					return $l->t('%1$s unshared <strong>%2$s</strong> from you', $params)->__toString();
 			}
 		}
 	}

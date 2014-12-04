@@ -250,7 +250,7 @@ class Server extends SimpleContainer implements IServerContainer {
 		});
 		$this->registerService('HTTPHelper', function (Server $c) {
 			$config = $c->getConfig();
-			return new HTTPHelper($config);
+			return new HTTPHelper($config, new \OC\Security\CertificateManager(\OC::$server->getUserSession()->getUser()));
 		});
 		$this->registerService('EventLogger', function (Server $c) {
 			if (defined('DEBUG') and DEBUG) {

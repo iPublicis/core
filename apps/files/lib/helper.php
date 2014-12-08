@@ -174,6 +174,7 @@ class Helper
 	 */
 	public static function getFiles($dir, $sortAttribute = 'name', $sortDescending = false) {
 		$content = \OC\Files\Filesystem::getDirectoryContent($dir);
+		$content = self::populateTags($content);
 
 		return self::sortFiles($content, $sortAttribute, $sortDescending);
 	}
@@ -207,7 +208,7 @@ class Helper
 	 * @param bool $sortDescending true for descending sort, false otherwise
 	 * @return \OCP\Files\FileInfo[] sorted files
 	 */
-	public static function sortFiles($files, $sortAttribute = 'name', $sortDescending = false) {
+	public static function sortFiles(&$files, $sortAttribute = 'name', $sortDescending = false) {
 		$sortFunc = 'compareFileNames';
 		if ($sortAttribute === 'mtime') {
 			$sortFunc = 'compareTimestamp';

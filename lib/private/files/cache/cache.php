@@ -515,7 +515,7 @@ class Cache {
 	 */
 	public function searchByTag($tag, $userId = null) {
 		if (is_null($userId)) {
-			$userId = \OCP\User::getUser();
+			$userId = \OC::$server->getUserSession()->getUser()->getUID(); 
 		}
 		$sql = 'SELECT `fileid`, `storage`, `path`, `parent`, `name`, ' .
 			'`mimetype`, `mimepart`, `size`, `mtime`, ' .

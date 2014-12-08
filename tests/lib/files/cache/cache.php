@@ -275,7 +275,7 @@ class Cache extends \Test\TestCase {
 		$file2 = 'folder/foobar';
 		$file3 = 'folder/foo';
 		$file4 = 'folder/foo2';
-		$file4 = 'folder/foo3';
+		$file5 = 'folder/foo3';
 		$data1 = array('size' => 100, 'mtime' => 50, 'mimetype' => 'foo/folder');
 		$fileData = array();
 		$fileData['foobar'] = array('size' => 1000, 'mtime' => 20, 'mimetype' => 'foo/file');
@@ -287,7 +287,7 @@ class Cache extends \Test\TestCase {
 		$id2 = $this->cache->put($file2, $fileData['foobar']);
 		$id3 = $this->cache->put($file3, $fileData['foo']);
 		$id4 = $this->cache->put($file4, $fileData['foo2']);
-		$id5 = $this->cache->put($file4, $fileData['foo3']);
+		$id5 = $this->cache->put($file5, $fileData['foo3']);
 
 		$tagManager = \OC::$server->getTagManager()->load('files');
 		$this->assertTrue($tagManager->tagAs($id1, 'tag1'));
@@ -312,7 +312,7 @@ class Cache extends \Test\TestCase {
 
 		$this->assertEquals('folder', $results[0]['name']);
 		$this->assertEquals('foobar', $results[1]['name']);
-		$this->assertEquals('foo3', $results[2]['name']);
+		$this->assertEquals('foo2', $results[2]['name']);
 
 		$tagManager->delete('tag1');
 		$tagManager->delete('tag2');

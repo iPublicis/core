@@ -31,6 +31,7 @@ $(document).ready(function() {
 			appName: 'Favorites',
 
 			_clientSideSort: true,
+			_allowSelection: false,
 
 			/**
 			 * @private

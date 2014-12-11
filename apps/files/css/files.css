@@ -286,6 +286,9 @@ table td.filename .nametext {
 	max-width: 800px;
 	height: 100%;
 }
+#fileList.has-favorites td.filename a.name {
+	left: 50px;
+}
 
 table td.filename .nametext .innernametext {
 	text-overflow: ellipsis;
@@ -415,6 +418,18 @@ table td.filename .uploadtext {
 	position: absolute;
 	width: 80%;
 	height: 50px;
+}
+
+#fileList tr td.filename .favorite {
+	display: inline-block;
+	float: left;
+}
+#fileList tr td.filename .action-favorite {
+	display: block;
+	float: left;
+	width: 30px;
+	line-height: 100%;
+	text-align: center;
 }
 
 #uploadsize-message,#delete-confirm { display:none; }

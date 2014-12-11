@@ -22,9 +22,6 @@
 
 		allowedLists: [
 			'files',
-			'shares.self',
-			'shares.link',
-			'shares.others',
 			'favorites'
 		],
 
@@ -45,7 +42,7 @@
 						'<a href="#" class="action action-favorite ' + (isFavorite ? 'permanent' : '') + '">' +
 						starState + '</a>'
 					);
-					$file.find('td.favorite').prepend($icon);
+					$file.find('td:first>.favorite').prepend($icon);
 					return $icon;
 				},
 				actionHandler: function(fileName, context) {
@@ -86,11 +83,8 @@
 		},
 
 		_extendFileList: function(fileList) {
-			// accomodate for the extra "favorite" column
-			var $header = fileList.$el.find('#headerName');
-			$header.attr('colspan', parseInt($header.attr('colspan'), 10) || 1 + 1);
-
 			// extend row prototype
+			fileList.$fileList.addClass('has-favorites');
 			var oldCreateRow = fileList._createRow;
 			fileList._createRow = function(fileData) {
 				var $tr = oldCreateRow.apply(this, arguments);
@@ -100,7 +94,7 @@
 						$tr.attr('data-favorite', true);
 					}
 				}
-				$tr.prepend('<td class="favorite"></td>');
+				$tr.find('td:first').prepend('<div class="favorite"></div>');
 				return $tr;
 			};
 		},

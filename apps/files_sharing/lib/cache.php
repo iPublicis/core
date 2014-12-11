@@ -371,7 +371,7 @@ class Shared_Cache extends Cache {
 				if ($file['mimetype'] === 'httpd/unix-directory') {
 					$exploreDirs[] = ltrim($dir . '/' . $file['name'], '/');
 				} else {
-					$tags = $tagger->getTagsForObjects((int)$file['fileid']);
+					$tags = $tagger->getTagsForObjects(array((int)$file['fileid']));
 					if (!empty($tags) && in_array($tag, current($tags))) {
 						$result[] = $file;
 					}

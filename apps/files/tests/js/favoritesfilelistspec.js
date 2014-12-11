@@ -29,7 +29,6 @@ describe('OCA.Files.FavoritesFileList tests', function() {
 			'<thead><tr>' +
 			'<th id="headerName" class="hidden column-name">' +
 			'<a class="name columntitle" data-sort="name"><span>Name</span><span class="sort-indicator"></span></a>' +
-			'<span class="selectedActions hidden">' +
 			'</th>' +
 			'<th class="hidden column-mtime">' +
 			'<a class="columntitle" data-sort="mtime"><span class="sort-indicator"></span></a>' +
@@ -63,9 +62,9 @@ describe('OCA.Files.FavoritesFileList tests', function() {
 				files: [{
 					id: 7,
 					name: 'test.txt',
-					path: 'somedir/',
+					path: '/somedir',
 					size: 123,
-					mtime: 11111,
+					mtime: 11111000,
 					tags: [OC.TAG_FAVORITE],
 					permissions: OC.PERMISSION_ALL,
 					mimetype: 'text/plain'
@@ -78,7 +77,7 @@ describe('OCA.Files.FavoritesFileList tests', function() {
 			expect(fakeServer.requests.length).toEqual(1);
 			request = fakeServer.requests[0];
 			expect(request.url).toEqual(
-				OC.generateUrl('apps/metadata/api/v1/tags/{tagName}/files', {tagName: OC.TAG_FAVORITE})
+				OC.generateUrl('apps/files/api/v1/tags/{tagName}/files', {tagName: OC.TAG_FAVORITE})
 			);
 
 			fakeServer.requests[0].respond(
@@ -90,9 +89,9 @@ describe('OCA.Files.FavoritesFileList tests', function() {
 			var $rows = fileList.$el.find('tbody tr');
 			var $tr = $rows.eq(0);
 			expect($rows.length).toEqual(1);
-			expect($tr.attr('data-id')).toEqual('49');
+			expect($tr.attr('data-id')).toEqual('7');
 			expect($tr.attr('data-type')).toEqual('file');
-			expect($tr.attr('data-file')).toEqual('name.txt');
+			expect($tr.attr('data-file')).toEqual('test.txt');
 			expect($tr.attr('data-path')).toEqual('/somedir');
 			expect($tr.attr('data-size')).toEqual('123');
 			expect(parseInt($tr.attr('data-permissions'), 10))
@@ -102,9 +101,9 @@ describe('OCA.Files.FavoritesFileList tests', function() {
 			expect($tr.find('a.name').attr('href')).toEqual(
 				OC.webroot +
 				'/index.php/apps/files/ajax/download.php' +
-				'?dir=%2Fsomedirfiles=name.txt'
+				'?dir=%2Fsomedir&files=test.txt'
 			);
-			expect($tr.find('.nametext').text().trim()).toEqual('name.txt');
+			expect($tr.find('.nametext').text().trim()).toEqual('test.txt');
 		});
 	});
 });

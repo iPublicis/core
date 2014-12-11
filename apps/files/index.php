@@ -39,7 +39,6 @@ OCP\Util::addscript('files', 'filesummary');
 OCP\Util::addscript('files', 'breadcrumb');
 OCP\Util::addscript('files', 'filelist');
 
-\OCP\Util::addScript('files', 'app');
 \OCP\Util::addScript('files', 'favoritesfilelist');
 \OCP\Util::addScript('files', 'tagsplugin');
 \OCP\Util::addScript('files', 'favoritesplugin');
@@ -91,7 +90,7 @@ function sortNavigationItems($item1, $item2) {
 	array(
 		"id" => 'favorites',
 		"appname" => 'files',
-		"script" => 'list.php',
+		"script" => 'simplelist.php',
 		"order" => 50,
 		"name" => $l->t('Favorites')
 	)

@@ -12,11 +12,10 @@
 	OCA.Files = OCA.Files || {};
 
 	/**
-	 * @class OCA.Files.FavoritesPlugin
-	 * @augments OCA.Files.FavoritesPlugin
+	 * @namespace OCA.Files.TagsPlugin
 	 *
-	 * @classdesc Favorites plugin
-	 * Registers the favorites file list and file actions.
+	 * Extends the file actions and file list to include a favorite action icon
+	 * and addition "data-tags" and "data-favorite" attributes.
 	 */
 	OCA.Files.TagsPlugin = {
 		name: 'Tags',

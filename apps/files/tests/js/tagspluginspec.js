@@ -8,7 +8,7 @@
  *
  */
 
-describe('OCA.Files.FavoritesPlugin tests', function() {
+describe('OCA.Files.TagsPlugin tests', function() {
 	var fileList;
 	var testFiles;
 
@@ -26,7 +26,7 @@ describe('OCA.Files.FavoritesPlugin tests', function() {
 		$('#content').append($div);
 
 		fileList = new OCA.Files.FileList($div);
-		OCA.Files.FavoritesPlugin.attach(fileList);
+		OCA.Files.TagsPlugin.attach(fileList);
 
 		testFiles = [{
 			id: 1,
@@ -69,7 +69,7 @@ describe('OCA.Files.FavoritesPlugin tests', function() {
 			expect($action.hasClass('permanent')).toEqual(true);
 
 			expect($tr.attr('data-tags').split('|')).toEqual(['tag1', 'tag2', OC.TAG_FAVORITE]);
-			expect($tr.attr('data-favorite')).toEqual(true);
+			expect($tr.attr('data-favorite')).toEqual('true');
 		});
 	});
 	describe('Applying tags', function() {

@@ -20,9 +20,9 @@
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\Metadata;
+namespace OCA\Files;
 
-use \OCA\Metadata\Service\TagService;
+use \OCA\Files\Service\TagService;
 
 class TagServiceTest extends \Test\TestCase {
 

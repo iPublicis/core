@@ -6,7 +6,7 @@
  * See the COPYING-README file.
  */
 
-namespace OCA\Metadata\Service;
+namespace OCA\Files\Service;
 
 /**
  * Service class to manage tags on files.
@@ -35,7 +35,7 @@ class TagService {
 	public function updateFileTags($path, $tags) {
 		$fileId = $this->homeFolder->get($path)->getId();
 
-		$currentTags = $this->tagger->getTagsForObjects($fileId);
+		$currentTags = $this->tagger->getTagsForObjects(array($fileId));
 
 		if (!empty($currentTags)) {
 			$currentTags = current($currentTags);

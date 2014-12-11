@@ -209,7 +209,7 @@
 			this.$el.on('show', this._onResize);
 
 			this.$fileList.on('click','td.filename>a.name', _.bind(this._onClickFile, this));
-			this.$fileList.on('change', 'td.filename>input:checkbox', _.bind(this._onClickFileCheckbox, this));
+			this.$fileList.on('change', 'td.filename>.selectCheckBox', _.bind(this._onClickFileCheckbox, this));
 			this.$el.on('urlChanged', _.bind(this._onUrlChanged, this));
 			this.$el.find('.select-all').click(_.bind(this._onClickSelectAll, this));
 			this.$el.find('.download').click(_.bind(this._onClickDownloadSelected, this));
@@ -287,7 +287,7 @@
 		 * @param state true to select, false to deselect
 		 */
 		_selectFileEl: function($tr, state) {
-			var $checkbox = $tr.find('td.filename>input:checkbox');
+			var $checkbox = $tr.find('td.filename>.selectCheckBox');
 			var oldData = !!this._selectedFiles[$tr.data('id')];
 			var data;
 			$checkbox.prop('checked', state);
@@ -336,7 +336,7 @@
 				else {
 					this._lastChecked = $tr;
 				}
-				var $checkbox = $tr.find('td.filename>input:checkbox');
+				var $checkbox = $tr.find('td.filename>.selectCheckBox');
 				this._selectFileEl($tr, !$checkbox.prop('checked'));
 				this.updateSelectionSummary();
 			} else {
@@ -378,7 +378,7 @@
 		 */
 		_onClickSelectAll: function(e) {
 			var checked = $(e.target).prop('checked');
-			this.$fileList.find('td.filename>input:checkbox').prop('checked', checked)
+			this.$fileList.find('td.filename>.selectCheckBox').prop('checked', checked)
 				.closest('tr').toggleClass('selected', checked);
 			this._selectedFiles = {};
 			this._selectionSummary.clear();
@@ -566,7 +566,7 @@
 				this.$fileList.append(tr);
 				if (isAllSelected || this._selectedFiles[fileData.id]) {
 					tr.addClass('selected');
-					tr.find('input:checkbox').prop('checked', true);
+					tr.find('.selectCheckBox').prop('checked', true);
 				}
 				if (animate) {
 					tr.addClass('appear transparent');
@@ -704,7 +704,7 @@
 			if (this._allowSelection) {
 				td.append(
 					'<input id="select-' + this.id + '-' + fileData.id +
-					'" type="checkbox" /><label for="select-' + this.id + '-' + fileData.id + '">' +
+					'" type="checkbox" class="selectCheckBox"/><label for="select-' + this.id + '-' + fileData.id + '">' +
 					'<div class="thumbnail" style="background-image:url(' + icon + '); background-size: 32px;"></div>' +
 					'</label>'
 				);
@@ -1532,7 +1532,7 @@
 									var fileEl = self.remove(file, {updateSummary: false});
 									// FIXME: not sure why we need this after the
 									// element isn't even in the DOM any more
-									fileEl.find('input[type="checkbox"]').prop('checked', false);
+									fileEl.find('.selectCheckBox').prop('checked', false);
 									fileEl.removeClass('selected');
 									self.fileSummary.remove({type: fileEl.attr('data-type'), size: fileEl.attr('data-size')});
 								});
